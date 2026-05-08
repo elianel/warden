@@ -1,0 +1,11 @@
+{
+  "name": "elian.warden",
+  "displayName": "Warden",
+  "version": "0.1.0",
+  "url": "https://github.com/elianel/warden",
+  "author": {
+    "name": "elian"
+  },
+  "unity": "2022.3",
+  "description": "warns you when importing unity packages that include scripts"
+}
