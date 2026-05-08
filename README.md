@@ -1,3 +1,6 @@
+### Installation
+- [Add To VCC/ALCOM](https://elianel.github.io/vcc-package-listing/) or [Download Release](https://github.com/elianel/warden/releases/latest)
+
 # Warden
 - Adds a warning inside the Unity Package Import Wizard when a package you are importing contains scripts
 - Let's you to conveniently export scripts somewhere on disk for manual review
