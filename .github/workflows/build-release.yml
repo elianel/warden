@@ -21,32 +21,41 @@ jobs:
 
       - name: Set Environment Variables
         run: |
+          echo "packageName=me.elian.warden" >> "$GITHUB_ENV"
           echo "zipFile=me.elian.warden-${{ steps.version.outputs.version }}.zip" >> "$GITHUB_ENV"
           echo "unityPackage=me.elian.warden-${{ steps.version.outputs.version }}.unitypackage" >> "$GITHUB_ENV"
           echo "version=${{ steps.version.outputs.version }}" >> "$GITHUB_ENV"
 
-      - name: Create Package Zip
+      - name: Create VPM Package Zip
         run: |
           zip -r "${{ env.zipFile }}" . \
             -x ".git/*" \
-            -x ".github/*"
+            -x ".github/*" \
+            -x "unitypackage-stage/*" \
+            -x "metaList"
+
+      - name: Stage UnityPackage Layout
+        run: |
+          mkdir -p "unitypackage-stage/Packages/${{ env.packageName }}"
+          rsync -a ./ "unitypackage-stage/Packages/${{ env.packageName }}/" \
+            --exclude ".git" \
+            --exclude ".github" \
+            --exclude "unitypackage-stage" \
+            --exclude "${{ env.zipFile }}" \
+            --exclude "${{ env.unityPackage }}" \
+            --exclude "metaList"
 
       - name: Track Package Meta Files
+        working-directory: unitypackage-stage
         run: |
-          find . -name "*.meta" \
-            -not -path "./.git/*" \
-            -not -path "./.github/*" > metaList
+          find "Packages/${{ env.packageName }}/" -name "*.meta" > ../metaList
 
       - name: Create UnityPackage
         uses: pCYSl5EDgo/create-unitypackage@v1.2.3
         with:
-          package-path: ${{ env.unityPackage }}
-          include-files: metaList
-
-      - name: Create Tag
-        uses: rickstaa/action-create-tag@v1
-        with:
-          tag: "${{ env.version }}"
+          working-folder: unitypackage-stage
+          package-path: ../${{ env.unityPackage }}
+          include-files: ../metaList
 
       - name: Make Release
         uses: softprops/action-gh-release@v2
