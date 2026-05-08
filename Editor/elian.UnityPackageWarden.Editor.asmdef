@@ -1,8 +1,10 @@
 {
-    "name": "elian.warden.Editor",
+    "name": "me.elian.warden.Editor",
     "rootNamespace": "",
     "references": [],
-    "includePlatforms": [],
+    "includePlatforms": [
+        "Editor"
+    ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,

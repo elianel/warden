@@ -1,11 +1,14 @@
 {
-  "name": "elian.warden",
+  "name": "me.elian.warden",
   "displayName": "Warden",
   "version": "0.1.0",
   "url": "https://github.com/elianel/warden",
   "author": {
-    "name": "elian"
+    "name": "elian",
+    "email": "hello@elian.me"
   },
   "unity": "2022.3",
-  "description": "warns you when importing unity packages that include scripts"
+  "description": "warns you when importing unity packages that include scripts",
+  "vpmDependencies": {},
+  "license": "MIT"
 }
