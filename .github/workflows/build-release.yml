@@ -40,7 +40,7 @@ jobs:
       - name: Create UnityPackage
         uses: pCYSl5EDgo/create-unitypackage@v1.2.3
         with:
-          package-path: .
+          package-path: ${{ env.unityPackage }}
           include-files: metaList
 
       - name: Create Tag
