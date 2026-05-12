@@ -10,7 +10,7 @@ namespace elian.Warden.Editor
     internal static class Warden
     {
 
-        private static readonly string[] s_ScriptExtensions = { ".cs", ".dll" };
+        private static readonly string[] s_ScriptExtensions = { ".cs", ".dll", ".so", ".dylib" };
 
         internal static object[] s_AllItems = null;
         internal static object[] s_ScriptItems = null;
